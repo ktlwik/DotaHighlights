@@ -12,7 +12,7 @@ from PIL import EpsImagePlugin
 
 
 print(cv2.__version__)
-vidcap = cv2.VideoCapture('LIQUID vs SECRET - FINAL EPIC GAME 1 - MAJOR DREAMLEAGUE 8 DOTA 2.mp4')
+vidcap = cv2.VideoCapture('NAVI vs NEWBEE - CIS vs CHINA ELIMINATION - MAJOR DreamLeague 8 DOTA 2.mp4')
 success,image = vidcap.read()
 count = 0
 success = True

@@ -6,8 +6,8 @@ cnt = 0
 death_time = []
 window = 30
 step = 10
-highlight_time = 900
-clip_time = 4165 
+highlight_time = 500
+clip_time = 5000 
 
 time_from_beginning = 0
 

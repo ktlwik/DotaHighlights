@@ -11,7 +11,7 @@ import (
 func main() {
   // Create a new parser instance from a file. Alternatively see NewParser([]byte)
 
-  f, err := os.Open("3597031137.dem")
+  f, err := os.Open("3594879358.dem")
   if err != nil {
     log.Fatalf("unable to open file: %s", err)
   }
