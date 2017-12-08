@@ -4,6 +4,7 @@ import (
   "os"
   "github.com/dotabuff/manta"
   "github.com/dotabuff/manta/dota"
+  
   //"io/ioutil"
 )
 
@@ -31,9 +32,37 @@ func main() {
 
 
   p.Callbacks.OnCMsgDOTACombatLogEntry(func(m *dota.CMsgDOTACombatLogEntry) error {
-    log.Printf("%s", m)
-   //ioutil.WriteFile("output.txt", m, 0644)
-   return nil
+
+    t := m.GetType()
+    switch dota.DOTA_COMBATLOG_TYPES(t) {
+      /*case dota.DOTA_COMBATLOG_TYPES_DOTA_COMBATLOG_XP:
+            amount := m.GetValue()
+            reason := m.GetXpReason() 
+            //"0": "Other", "1": "Hero", "2": "Creep", "3": "Roshan"
+                    
+            target, _ := p.LookupStringByIndex("CombatLogNames", int32(m.GetTargetName()))
+            log.Printf("{\"target\":\"%s\",\"reason\":%d,\"amount\":%d, \"whole Log\": %s}", target, reason, amount, m)     */ 
+            //log.Printf("%s", m)
+      case dota.DOTA_COMBATLOG_TYPES_DOTA_COMBATLOG_DAMAGE:
+              /*iat := m.GetIsAttackerIllusion()
+              iah := m.GetIsAttackerHero()
+              iti := m.GetIsTargetIllusion()
+              ith := m.GetIsTargetHero()
+              ivr := m.GetIsVisibleRadiant()
+              ivd := m.GetIsVisibleDire()
+              itb:= m.GetIsTargetBuilding()*/
+              
+              target, _ := p.LookupStringByIndex("CombatLogNames", int32(m.GetTargetName()))
+              targetSource, _ := p.LookupStringByIndex("CombatLogNames", int32(m.GetTargetSourceName()))
+              attacker, _ := p.LookupStringByIndex("CombatLogNames", int32(m.GetAttackerName()))
+              damageSource, _ := p.LookupStringByIndex("CombatLogNames", int32(m.GetDamageSourceName())) 
+              inflictor, _ := p.LookupStringByIndex("CombatLogNames", int32(m.GetInflictorName()))
+              value := m.GetValue()
+              log.Printf("\"target\":\"%s\" \"targetSource\":%s \"attacker\":%s  \"damageSource\": %s \"inflictor\":%s \"value\": %d %s", 
+                target, targetSource, attacker, damageSource, inflictor, value, m)  
+      //ioutil.WriteFile("output.txt", m, 0644)
+    }
+    return nil
   })
 
   // Start parsing the replay!
